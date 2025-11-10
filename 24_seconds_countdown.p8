@@ -1,0 +1,107 @@
+pico-8 cartridge // http://www.pico-8.com
+version 42
+__lua__
+function _init()
+ seconds=24
+ timer=0
+ decimal_control=1
+ countdown_control=1
+ LED={2,2,2,2,2}
+end
+
+function _update()
+ time_flow()
+ if(timer>30) then
+  if seconds>0 then 
+   seconds=seconds-1
+  end
+  timer=timer-30
+ end 
+
+ bilnk_control()
+ check_input()
+ LED_control(seconds)
+
+end
+
+function _draw()
+ cls()
+ if(decimal_control==1) then
+  print(seconds)
+ end 
+ draw_LED()
+end
+-->8
+function bilnk_control()
+ if seconds<=5 then
+  if (timer>10) and (timer<20) then
+   decimal_control=0
+  else
+   decimal_control=1
+  end 
+ end
+end 
+
+function time_flow()
+ if countdown_control==1 then
+  timer=timer+1
+ end 
+    
+end
+
+function check_input()
+ if(btn(⬅️)) then
+  zero_()
+ end
+ if(btn(⬆️)) then
+  reset_()
+ end
+ if(btn(➡️)) then
+  pause_()
+ end
+ if(btn(⬇️)) then
+  continue_()
+ end
+    
+end 
+
+function zero_()
+ seconds=0
+end 
+
+function reset_()
+ seconds=24
+end
+
+function pause_()
+ countdown_control=0
+end
+
+function continue_()
+ countdown_control=1
+end
+
+function draw_LED()
+ if (seconds!=0) or (decimal_control==1) then 
+  for n=1,5 do
+   spr(LED[n],n*9,20)
+  end
+ end
+end
+function LED_control(sec_temp)
+ 
+ for n=0,4 do
+  LED[5-n]=sec_temp%2+1
+  sec_temp=sec_temp/2
+ end 
+    
+end
+__gfx__
+00000000005555000055550000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000052222500588885000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00700700522222255888888500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000522222d55888887500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000522222d55888887500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0070070052222d255888878500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000052222500588885000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000005555000055550000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
