@@ -11,13 +11,6 @@ end
 
 function _update()
  time_flow()
- if(timer>30) then
-  if seconds>0 then 
-   seconds=seconds-1
-  end
-  timer=timer-30
- end 
-
  bilnk_control()
  check_input()
  LED_control(seconds)
@@ -32,6 +25,14 @@ function _draw()
  draw_LED()
 end
 -->8
+function seconds_update()
+ if(timer>30) then
+  if seconds>0 then 
+   seconds=seconds-1
+  end
+  timer=timer-30
+ end 
+end 
 function bilnk_control()
  if seconds<=5 then
   if (timer>10) and (timer<20) then
