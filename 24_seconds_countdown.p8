@@ -33,6 +33,7 @@ function seconds_update()
   timer=timer-30
  end 
 end 
+
 function bilnk_control()
  if seconds<=5 then
   if (timer>10) and (timer<20) then

@@ -8,5 +8,6 @@ j
 jal
 AND
 OR
+jr
 
 请对照指令集pdf文件查看具体使用方式
