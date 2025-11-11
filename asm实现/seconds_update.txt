@@ -3,9 +3,8 @@ seconds_update:
     lw $t0, @timer
     
     # 检查 if(timer>30)
-    addi $t2, $zero, 30   # $t2 = 30
-    sub $t3, $t0, $t2     # $t3 = timer - 30
-    bgtz $t3, timer_gt_30 # 如果 timer > 30，跳到判断seconds是否大于零
+    addi $t1, $t0, -30
+    bgtz $t1, timer_gt_30 # 如果 timer > 30，跳到判断seconds是否大于零
     jal seconds_update_end  # 否则结束函数
 
 timer_gt_30:
@@ -16,12 +15,12 @@ timer_gt_30:
 
 seconds_gt_zero:
     # seconds = seconds - 1
-    sub $t4, $t4, 1       # $t4 = seconds - 1
+    addi $t4, $t4, -1       # $t4 = seconds - 1
     sw $t4, @seconds        # 存储更新后的 seconds
 
 update_timer:
     # timer = timer - 30
-    sub $t0, $t0, $t2     # $t0 = timer - 30
+    addi $t0, $t0, -30     # $t0 = timer - 30
     sw $t0, @timer        # 存储更新后的 timer
 
 seconds_update_end:

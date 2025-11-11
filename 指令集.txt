@@ -1,7 +1,7 @@
 lw 
 sw
 addi
-sub
+sub//并不需要
 beq
 bgtz
 j
