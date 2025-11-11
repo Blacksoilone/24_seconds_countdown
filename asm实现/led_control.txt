@@ -1,0 +1,21 @@
+led_control:
+    addi $sp, $sp, -4           #在栈堆上分配4字节空间
+    sw $ra, 0($sp)              # 保存 $ra (返回地址) 到堆栈
+
+
+    lw $t0, @seconds            
+
+    # 提取 'seconds' 的低5位 (用于驱动5个LED灯)。
+    addi $t1, $zero, 31         # $t1 = 31 (掩码 0b11111)
+    AND $t0, $t0, $t1           # $t0 = $t0 & 31 
+
+    # 将提取出的5位二进制值，直接写入LED硬件的内存地址
+    sw $t0, @led灯              # [内存地址 @led灯] = $t0 
+
+    # 从堆栈中恢复 $ra (返回地址)
+    lw $ra, 0($sp)
+    # 释放堆栈空间
+    addi $sp, $sp, 4
+    
+    # 返回到调用者 (jr $ra)
+    jr $ra                      
