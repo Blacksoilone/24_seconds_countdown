@@ -6,13 +6,13 @@ seconds_update:
     addi $t2, $zero, 30   # $t2 = 30
     sub $t3, $t0, $t2     # $t3 = timer - 30
     bgtz $t3, timer_gt_30 # 如果 timer > 30，跳到判断seconds是否大于零
-    j seconds_update_end  # 否则结束函数
+    jal seconds_update_end  # 否则结束函数
 
 timer_gt_30:
     # 检查 if seconds > 0
     lw $t4, @seconds        # $t4 = seconds
     bgtz $t4, seconds_gt_zero  # 如果 seconds > 0，跳转给second加一
-    j update_timer        # 否则直接更新 timer
+    jal update_timer        # 否则直接更新 timer
 
 seconds_gt_zero:
     # seconds = seconds - 1

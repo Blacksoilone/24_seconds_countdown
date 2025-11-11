@@ -8,21 +8,21 @@ blink_control:
     lw $t3 @时钟
     sub $t4, $t3, $t2
     bgtz $t4, compare_blink_2   #timer比10大的话有可能闪烁,进一步判断
-    j decimal
+    jal decimal
 
 compare_blink_2:
     addi $t5, $zero, 20
     sub $t4, $t3, $t5
     bgtz $t4, not_decimal       #如果比20小，闪
-    j decimal
+    jal decimal
 
 decimal:
     addi $t6, $zero, 1
     sw $t6 @decimal_control
-    j end_the_blink
+    jal end_the_blink
 not_decimal:
     sw $zero @decimal_control
-    j end_the_blink
+    jal end_the_blink
     
 end_the_blink:
     jr $ra 
