@@ -1,5 +1,5 @@
 变量：
-seconds demical_control countdown_control timer?
+seconds demical_control countdown_control timer? led 1到5
 硬件：
 时钟 按键*4 数码管 led灯
 
