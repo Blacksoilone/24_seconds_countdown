@@ -1,0 +1,16 @@
+led_control:
+    lw $t0, @seconds
+    addi $t1, $zero, $zero
+    j led_control_cycle
+led_control_cycle:
+
+    addi $t2, $t1, -4
+    bgtz $t2,led_control_end
+    ANDi $t3, $t0, 1
+    sw $t3, @led($t1)
+    srl $t0, $t0, 1
+
+    addi $t1, $zero, 1
+
+led_control_end:
+    jr $ra

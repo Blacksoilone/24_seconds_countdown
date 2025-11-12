@@ -6,8 +6,10 @@ beq
 bgtz
 j
 jal
-AND
+ANDi
 OR
 jr
+
+srl
 
 请对照指令集pdf文件查看具体使用方式
