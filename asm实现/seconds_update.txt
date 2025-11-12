@@ -1,9 +1,9 @@
 seconds_update:
-    # 加载 timer 到寄存器 $t0
-    lw $t0, @timer
+
+    lw $t0, @current_time
     
     # 检查 if(timer>30)
-    addi $t1, $t0, -30
+    addi $t1, $t0, -100000000
     bgtz $t1, timer_gt_30 # 如果 timer > 30，跳到判断seconds是否大于零
     jal seconds_update_end  # 否则结束函数
 
@@ -21,7 +21,7 @@ seconds_gt_zero:
 update_timer:
     # timer = timer - 30
     addi $t0, $t0, -30     # $t0 = timer - 30
-    sw $t0, @timer        # 存储更新后的 timer
+    sw $t0, @current_time        # 存储更新后的 timer
 
 seconds_update_end:
     jr $ra                # 返回调用者

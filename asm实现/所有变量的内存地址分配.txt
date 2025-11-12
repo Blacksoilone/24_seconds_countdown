@@ -1,0 +1,18 @@
+$time++++++
+delta_time 希望的是，暂停的时候此变量增长
+//current_time $time-delta_time
+seconds[current_time]取整
+
+delta_time实际上只在continue的时候增长，瞬间增长到有效值
+暂停的时候，记录了当时的时间a
+if(pause){
+    current_time=a
+}
+else{
+    current_time $time-delta_time
+    if(current_time>100000000){
+        current_time-=100000000
+        delta_time+=100000000
+        seconds-=1
+    }
+}
