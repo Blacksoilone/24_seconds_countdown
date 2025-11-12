@@ -100,18 +100,18 @@ do_continue:
     sw $zero, @pause_flag
     jr $ra
 
-update_blink:
+update_blink:                   #闪烁控制
     lw $t3, @seconds
-    addi $t4, $t3, -5
+    addi $t4, $t3, -5           #<=5秒的时候才能闪
     bgtz $t4, end_blink
     j do_blink
 
 do_blink:
     lw $t0, @tick_counter
-    addi $t0, $t0, -25
+    addi $t0, $t0, -25          #这里tick_counter是每秒100次，因此选取25到75的时间作为暗下去的时间
     bgtz $t0, further_blink
     j blink_dark
-further_blink:
+further_blink:                  #判断了大于25，因此进一步判断是不是小于75
     lw $t0, @tick_counter
     addi $t0, $t0, -75
     bgtz $t0, blink_dark
@@ -126,16 +126,16 @@ blink_dark:
 end_blink:
     jr $ra
 
-update_led:
+update_led:                     #控制led灯的亮暗
     lw $t0, @seconds
     beq $t0, $zero, do_led_blink
     sw $t0, 0xfff0
     j end_led
 
-do_led_blink:
+do_led_blink:                   #除了blink_control以外还要考虑seconds是否为0
     lw $t1, @blink_control
     beq $t1, $zero, led_dark
-    addi $t2, $zero, 31
+    addi $t2, $zero, 31         #31是11111，用来让led灯全亮
     sw $t2, 0xfff0
     j end_led
 led_dark:
@@ -145,13 +145,13 @@ end_led:
     jr $ra
     
 
-update_display:
+update_display:                 #数码管显示
     lw $t0, @blink_control
     beq $t0, $zero, display_dark
     j display_light
 display_light:
     lw $t1, @seconds
-    sw $t1, @display
+    sw $t1, @display            #写进这个地址，我们认为可以自动变成7段码。实际上逻辑由verilog源码完成。我们硬件实现里要给数码管额外套一层
     j end_display
 display_dark:
     sw $zero, @display
