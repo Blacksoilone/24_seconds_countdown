@@ -20,10 +20,15 @@ update:
     sw $zero, @tick_event           #读完之后把寄存器置0，到时候由硬件置1
 
     jal update_countdown
+    addi $zero, $zero, 0
     jal check_input
+    addi $zero, $zero, 0
     jal update_blink
+    addi $zero, $zero, 0
     jal update_led
+    addi $zero, $zero, 0
     jal update_display
+    addi $zero, $zero, 0
     j update
 
 update_countdown:
@@ -37,7 +42,7 @@ do_count:
     sw $t1, @tick_counter           #读取tickcounter并加一，实现计时
 
     addi $t2, $t1, -100
-    beq $t2,$zero do_second
+    beq $t2, $zero, do_second
     j skip_countdown
 
 do_second:
@@ -60,6 +65,7 @@ check_left:
     andi $t1, $t0, 8
     beq $t1, $zero, check_right
     jal do_zero
+    addi $zero, $zero, 0
     j end_check
 
 check_right:
@@ -67,6 +73,7 @@ check_right:
     andi $t1, $t0, 16
     beq $t1, $zero, check_up
     jal do_pause
+    addi $zero, $zero, 0
     j end_check
 
 check_up:
@@ -74,13 +81,15 @@ check_up:
     andi $t1, $t0, 2
     beq $t1, $zero, check_down
     jal do_reset
+    addi $zero, $zero, 0
     j end_check
 
 check_down:
     #下，掩码为4，继续
     andi $t1, $t0, 4
-    beq $t1, $zero, check_done
+    beq $t1, $zero, end_check
     jal do_continue
+    addi $zero, $zero, 0
     j end_check
 
 end_check:
