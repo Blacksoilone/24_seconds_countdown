@@ -1,9 +1,172 @@
-20080018,  // addi $t0, $zero, 24           0x00000000
-AC081000,  // sw $t0, 0x1000($zero)         0x00000004
-AC001001,  // sw $zero, 0x1001($zero)       0x00000008
-AC001002,  // sw $zero, 0x1002($zero)       0x0000000C
-AC001003,  // sw $zero, 0x1003($zero)       0x00000010
-08000006,  // j update                      0x00000014
-8C08FF01,  // lw $t0, 0xff01($zero)         0X00000018
-31090001,  // andi $t1, $t0, 1              0X0000001C
+// --- 初始化部分 ---
+20080018,  // 地址: 0x00000000  指令: addi $t0, $zero, 24
+AC081000,  // 地址: 0x00000004  指令: sw $t0, 0x1000($zero)
+AC001001,  // 地址: 0x00000008  指令: sw $zero, 0x1001($zero)
+AC001002,  // 地址: 0x0000000C  指令: sw $zero, 0x1002($zero)
+20090001,  // 地址: 0x00000010  指令: addi $t1, $zero, 1
+AC091003,  // 地址: 0x00000014  指令: sw $t1, 0x1003($zero)
+08000007,  // 地址: 0x00000018  指令: j update
 
+// --- update (Wait for Tick) ---
+8C08FF01,  // 地址: 0x0000001C  指令: lw $t0, 0xff01($zero)
+31090001,  // 地址: 0x00000020  指令: andi $t1, $t0, 1
+1120FFFD,  // 地址: 0x00000024  指令: beq $t1, $zero, wait_for_tick
+AC00FF01,  // 地址: 0x00000028  指令: sw $zero, 0xff01($zero)
+0C000016,  // 地址: 0x0000002C  指令: jal update_countdown
+20000000,  // 地址: 0x00000030  指令: addi $zero, $zero, 0 
+0C000025,  // 地址: 0x00000034  指令: jal check_input
+20000000,  // 地址: 0x00000038  指令: addi $zero, $zero, 0 
+0C000046,  // 地址: 0x0000003C  指令: jal update_blink
+20000000,  // 地址: 0x00000040  指令: addi $zero, $zero, 0 
+0C00005B,  // 地址: 0x00000044  指令: jal update_led
+20000000,  // 地址: 0x00000048  指令: addi $zero, $zero, 0 
+0C000067,  // 地址: 0x0000004C  指令: jal update_display
+20000000,  // 地址: 0x00000050  指令: addi $zero, $zero, 0 
+08000007,  // 地址: 0x00000054  指令: j update
+
+// --- update_countdown ---
+8C081001,  // 地址: 0x00000058  指令: lw $t0, 0x1001($zero)
+11000001,  // 地址: 0x0000005C  指令: beq $t0, $zero, do_count
+08000024,  // 地址: 0x00000060  指令: j skip_countdown
+
+// --- do_count ---
+8C091002,  // 地址: 0x00000064  指令: lw $t1, 0x1002($zero)
+21290001,  // 地址: 0x00000068  指令: addi $t1, $t1, 1
+AC091002,  // 地址: 0x0000006C  指令: sw $t1, 0x1002($zero)
+212AFF9C,  // 地址: 0x00000070  指令: addi $t2, $t1, -100
+11400001,  // 地址: 0x00000074  指令: beq $t2, $zero, do_second
+08000024,  // 地址: 0x00000078  指令: j skip_countdown
+
+// --- do_second ---
+AC001002,  // 地址: 0x0000007C  指令: sw $zero, 0x1002($zero)
+8C0B1000,  // 地址: 0x00000080  指令: lw $t3, 0x1000($zero)
+11600002,  // 地址: 0x00000084  指令: beq $t3, $zero, skip_countdown
+216BFFFF,  // 地址: 0x00000088  指令: addi $t3, $t3, -1
+AC0B1000,  // 地址: 0x0000008C  指令: sw $t3, 0x1000($zero)
+
+// --- skip_countdown ---
+03E00008,  // 地址: 0x00000090  指令: jr $ra
+
+// --- check_input ---
+8C08FFF4,  // 地址: 0x00000094  指令: lw $t0, 0xfff4($zero)
+08000027,  // 地址: 0x00000098  指令: j check_left
+
+// --- check_left ---
+31090008,  // 地址: 0x0000009C  指令: andi $t1, $t0, 8
+11200003,  // 地址: 0x000000A0  指令: beq $t1, $zero, check_right
+0C00003C,  // 地址: 0x000000A4  指令: jal do_zero
+20000000,  // 地址: 0x000000A8  指令: addi $zero, $zero, 0 
+0800003B,  // 地址: 0x000000AC  指令: j end_check
+
+// --- check_right ---
+31090010,  // 地址: 0x000000B0  指令: andi $t1, $t0, 16
+11200003,  // 地址: 0x000000B4  指令: beq $t1, $zero, check_up
+0C00003E,  // 地址: 0x000000B8  指令: jal do_pause
+20000000,  // 地址: 0x000000BC  指令: addi $zero, $zero, 0 
+0800003B,  // 地址: 0x000000C0  指令: j end_check
+
+// --- check_up ---
+31090002,  // 地址: 0x000000C4  指令: andi $t1, $t0, 2
+11200003,  // 地址: 0x000000C8  指令: beq $t1, $zero, check_down
+0C000041,  // 地址: 0x000000CC  指令: jal do_reset
+20000000,  // 地址: 0x000000D0  指令: addi $zero, $zero, 0 
+0800003B,  // 地址: 0x000000D4  指令: j end_check
+
+// --- check_down ---
+31090004,  // 地址: 0x000000D8  指令: andi $t1, $t0, 4
+11200003,  // 地址: 0x000000DC  指令: beq $t1, $zero, end_check
+0C000044,  // 地址: 0x000000E0  指令: jal do_continue
+20000000,  // 地址: 0x000000E4  指令: addi $zero, $zero, 0 
+0800003B,  // 地址: 0x000000E8  指令: j end_check
+
+// --- end_check ---
+03E00008,  // 地址: 0x000000EC  指令: jr $ra
+
+// --- do_zero ---
+AC001000,  // 地址: 0x000000F0  指令: sw $zero, 0x1000($zero)
+03E00008,  // 地址: 0x000000F4  指令: jr $ra
+
+// --- do_pause ---
+20080001,  // 地址: 0x000000F8  指令: addi $t0, $zero, 1
+AC081001,  // 地址: 0x000000FC  指令: sw $t0, 0x1001($zero)
+03E00008,  // 地址: 0x00000100  指令: jr $ra
+
+// --- do_reset ---
+20080018,  // 地址: 0x00000104  指令: addi $t0, $zero, 24
+AC081000,  // 地址: 0x00000108  指令: sw $t0, 0x1000($zero)
+03E00008,  // 地址: 0x0000010C  指令: jr $ra
+
+// --- do_continue ---
+AC001001,  // 地址: 0x00000110  指令: sw $zero, 0x1001($zero)
+03E00008,  // 地址: 0x00000114  指令: jr $ra
+
+// --- update_blink ---
+8C0B1000,  // 地址: 0x00000118  指令: lw $t3, 0x1000($zero)
+200C0005,  // 地址: 0x0000011C  指令: addi $t4, $zero, 5
+018B682A,  // 地址: 0x00000120  指令: slt $t5, $t4, $t3
+15A00001,  // 地址: 0x00000124  指令: bne $t5, $zero, do_blink
+0800005A,  // 地址: 0x00000128  指令: j end_blink
+
+// --- do_blink ---
+8C081002,  // 地址: 0x0000012C  指令: lw $t0, 0x1002($zero)
+200A0019,  // 地址: 0x00000130  指令: addi $t2, $zero, 25
+010A582A,  // 地址: 0x00000134  指令: slt $t3, $t0, $t2
+11600001,  // 地址: 0x00000138  指令: beq $t3, $zero, further_blink
+08000055,  // 地址: 0x0000013C  指令: j blink_light
+
+// --- further_blink ---
+8C081002,  // 地址: 0x00000140  指令: lw $t0, 0x1002($zero)
+200A004B,  // 地址: 0x00000144  指令: addi $t2, $zero, 75
+010A582A,  // 地址: 0x00000148  指令: slt $t3, $t0, $t2
+15600001,  // 地址: 0x0000014C  指令: bne $t3, $zero, blink_light
+08000058,  // 地址: 0x00000150  指令: j blink_dark
+
+// --- blink_light ---
+20090001,  // 地址: 0x00000154  指令: addi $t1, $zero, 1
+AC091003,  // 地址: 0x00000158  指令: sw $t1, 0x1003($zero)
+0800005A,  // 地址: 0x0000015C  指令: j end_blink
+
+// --- blink_dark ---
+AC001003,  // 地址: 0x00000160  指令: sw $zero, 0x1003($zero)
+0800005A,  // 地址: 0x00000164  指令: j end_blink
+
+// --- end_blink ---
+03E00008,  // 地址: 0x00000168  指令: jr $ra
+
+// --- update_led ---
+8C081000,  // 地址: 0x0000016C  指令: lw $t0, 0x1000($zero)
+11000002,  // 地址: 0x00000170  指令: beq $t0, $zero, do_led_blink
+AC08FFF0,  // 地址: 0x00000174  指令: sw $t0, 0xfff0($zero)
+08000066,  // 地址: 0x00000178  指令: j end_led
+
+// --- do_led_blink ---
+8C091003,  // 地址: 0x0000017C  指令: lw $t1, 0x1003($zero)
+11200003,  // 地址: 0x00000180  指令: beq $t1, $zero, led_dark
+200A001F,  // 地址: 0x00000184  指令: addi $t2, $zero, 31
+AC0AFFF0,  // 地址: 0x00000188  指令: sw $t2, 0xfff0($zero)
+08000066,  // 地址: 0x0000018C  指令: j end_led
+
+// --- led_dark ---
+AC00FFF0,  // 地址: 0x00000190  指令: sw $zero, 0xfff0($zero)
+08000066,  // 地址: 0x00000194  指令: j end_led
+
+// --- end_led ---
+03E00008,  // 地址: 0x00000198  指令: jr $ra
+
+// --- update_display ---
+8C081003,  // 地址: 0x0000019C  指令: lw $t0, 0x1003($zero)
+11000002,  // 地址: 0x000001A0  指令: beq $t0, $zero, display_dark
+0800006A,  // 地址: 0x000001A4  指令: j display_light
+
+// --- display_light ---
+8C091000,  // 地址: 0x000001A8  指令: lw $t1, 0x1000($zero)
+AC09FF00,  // 地址: 0x000001AC  指令: sw $t1, 0xff00($zero)
+08000070,  // 地址: 0x000001B0  指令: j end_display
+
+// --- display_dark ---
+200AFFFF,  // 地址: 0x000001B4  指令: addi $t2, $zero, -1
+AC0AFF00,  // 地址: 0x000001B8  指令: sw $t2, 0xff00($zero)
+08000070,  // 地址: 0x000001BC  指令: j end_display
+
+// --- end_display ---
+03E00008;  // 地址: 0x000001C0  指令: jr $ra
