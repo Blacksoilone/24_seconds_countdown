@@ -1,23 +1,21 @@
-#本程序中，所有@均为尚未讨论完毕的对应变量或者硬件的内存地址，请不要认为是错误
-start:
     addi $t0, $zero, 24
-    sw $t0, @seconds            #设置倒计时初值
+    sw $t0, 0x1000($zero)            #设置倒计时初值
 
-    sw $zero, @pause_flag       #用pause_flag控制暂停，初始化为0
+    sw $zero, 0x1001($zero)       #用pause_flag控制暂停，初始化为0
 
-    sw $zero, @tick_counter
+    sw $zero, 0x1002($zero)
 
-    sw $zero, @blink_control
+    sw $zero, 0x1003($zero)
 
     j update
 
 update:
     wait_for_tick:
-    lw $t0, @tick_event             # 读上升沿寄存器
+    lw $t0, 0xff01($zero)             # 读上升沿寄存器
     andi $t1, $t0, 1                # 提取 bit0
     beq $t1, $zero, wait_for_tick   # 若为0，回到开头继续等待
 
-    sw $zero, @tick_event           #读完之后把寄存器置0，到时候由硬件置1
+    sw $zero, 0xff01($zero)           #读完之后把寄存器置0，到时候由硬件置1
 
     jal update_countdown
     addi $zero, $zero, 0
@@ -32,26 +30,26 @@ update:
     j update
 
 update_countdown:
-    lw $t0, @pause_flag
+    lw $t0, 0x1001($zero)
     beq $t0, $zero, do_count
     j skip_countdown
 
 do_count:
-    lw $t1, @tick_counter
+    lw $t1, 0x1002($zero)
     addi $t1, $t1, 1
-    sw $t1, @tick_counter           #读取tickcounter并加一，实现计时
+    sw $t1, 0x1002($zero)           #读取tickcounter并加一，实现计时
 
     addi $t2, $t1, -100
     beq $t2, $zero, do_second
     j skip_countdown
 
 do_second:
-    sw $zero, @tick_counter
-    lw $t3, @seconds
+    sw $zero, 0x1002($zero)
+    lw $t3, 0x1000($zero)
     beq $t3, $zero, skip_countdown
 
     addi $t3, $t3, -1
-    sw $t3, @seconds
+    sw $t3, 0x1000($zero)
 
 skip_countdown:
     jr $ra
@@ -96,54 +94,54 @@ end_check:
     jr $ra
 
 do_zero:
-    sw $zero, @seconds
+    sw $zero, 0x1000($zero)
     jr $ra
 do_pause:
     addi $t0, $zero, 1
-    sw $t0, @pause_flag
+    sw $t0, 0x1001($zero)
     jr $ra
 do_reset:
     addi $t0, $zero, 24
-    sw $t0, @seconds
+    sw $t0, 0x1000($zero)
     jr $ra
 do_continue:
-    sw $zero, @pause_flag
+    sw $zero, 0x1001($zero)
     jr $ra
 
 update_blink:                   #闪烁控制
-    lw $t3, @seconds
+    lw $t3, 0x1000($zero)
     addi $t4, $t3, -5           #<=5秒的时候才能闪
     bgtz $t4, end_blink
     j do_blink
 
 do_blink:
-    lw $t0, @tick_counter
+    lw $t0, 0x1002($zero)
     addi $t0, $t0, -25          #这里tick_counter是每秒100次，因此选取25到75的时间作为暗下去的时间
     bgtz $t0, further_blink
     j blink_light
 further_blink:                  #判断了大于25，因此进一步判断是不是小于75
-    lw $t0, @tick_counter
+    lw $t0, 0x1002($zero)
     addi $t0, $t0, -75
     bgtz $t0, blink_light
     j blink_dark
 blink_light:
     addi $t1, $zero, 1
-    sw $t1, @blink_control
+    sw $t1, 0x1003($zero)
     j end_blink
 blink_dark:
-    sw $zero, @blink_control
+    sw $zero, 0x1003($zero)
     j end_blink
 end_blink:
     jr $ra
 
 update_led:                     #控制led灯的亮暗
-    lw $t0, @seconds
+    lw $t0, 0x1000($zero)
     beq $t0, $zero, do_led_blink
     sw $t0, 0xfff0
     j end_led
 
 do_led_blink:                   #除了blink_control以外还要考虑seconds是否为0
-    lw $t1, @blink_control
+    lw $t1, 0x1003($zero)
     beq $t1, $zero, led_dark
     addi $t2, $zero, 31         #31是11111，用来让led灯全亮
     sw $t2, 0xfff0
@@ -154,18 +152,17 @@ led_dark:
 end_led:
     jr $ra
     
-
 update_display:                 #数码管显示
-    lw $t0, @blink_control
+    lw $t0, 0x1003($zero)
     beq $t0, $zero, display_dark
     j display_light
 display_light:
-    lw $t1, @seconds
-    sw $t1, @display            #写进这个地址，我们认为可以自动变成7段码。实际上逻辑由verilog源码完成。我们硬件实现里要给数码管额外套一层
+    lw $t1, 0x1000($zero)
+    sw $t1, 0xff00($zero)            #写进这个地址，我们认为可以自动变成7段码。实际上逻辑由verilog源码完成。我们硬件实现里要给数码管额外套一层
     j end_display
 display_dark:
     addi $t2, $zero, -1
-    sw $t2, @display
+    sw $t2, 0xff00($zero)
     j end_display
 end_display:
     jr $ra
