@@ -5,7 +5,7 @@
 
     sw $zero, 0x1002($zero)
 
-    li $t1, 1                  #原代码：sw $zero, 0x1003($zero)
+    addi $t1, $zero, 1                  #原代码：sw $zero, 0x1003($zero)
     sw $t1, 0x1003($zero)      #此处为blink_control的初始化，应该初始化为1，否则在5秒前都会将display设置为-1，熄灭
 
     j update
