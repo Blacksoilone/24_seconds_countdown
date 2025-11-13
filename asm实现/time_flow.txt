@@ -11,3 +11,18 @@ time_able:
     
 time_flow_end:
     jr $ra
+
+
+
+
+$time
+addi $t8,$zero,$zero
+sub $t6,@timer,$t8
+
+
+sw $t6 @timer
+
+
+continue
+lw $t7,@timer
+sub $t8,$timer,$t7

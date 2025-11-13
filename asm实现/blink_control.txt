@@ -1,24 +1,24 @@
 blink_control:
-    lw $t1, @seconds            #读取seconds的值
-    addi $t2, $zero, 5          #设置立即数5用作比较
-    sub $t3, $t1, $t2           #$t3=seconds-5
-    bgtz $t3, end_the_blink     #大于5的话不闪烁，所以退出此程序
+    lw $t0, @seconds            #读取seconds的值
+
+    addi $t1, $t0, -5          #$t1=seconds-5
+    bgtz $t1, end_the_blink     #大于5的话不闪烁，所以退出此程序
     #以下是小于5的结果
-    addi $t2, $zero, 10
-    lw $t3 @时钟
-    sub $t4, $t3, $t2
-    bgtz $t4, compare_blink_2   #timer比10大的话有可能闪烁,进一步判断
+
+    lw $t1 @时钟
+    addi $t2, $t1, -10
+    bgtz $t2, compare_blink_2   #timer比10大的话有可能闪烁,进一步判断
     j decimal
 
 compare_blink_2:
-    addi $t5, $zero, 20
-    sub $t4, $t3, $t5
-    bgtz $t4, not_decimal       #如果比20小，闪
+
+    addi $t2, $t1, -20
+    bgtz $t2, not_decimal       #如果比20小，闪
     j decimal
 
 decimal:
-    addi $t6, $zero, 1
-    sw $t6 @decimal_control
+    addi $t3, $zero, 1
+    sw $t3 @decimal_control
     j end_the_blink
 not_decimal:
     sw $zero @decimal_control

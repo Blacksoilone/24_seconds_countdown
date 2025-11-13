@@ -1,5 +1,5 @@
 变量：
-seconds demical_control countdown_control timer? 
+seconds demical_control countdown_control delta_time
 硬件：
 时钟 按键*4 数码管 led灯
 
@@ -11,4 +11,4 @@ seconds demical_control countdown_control timer?
 
 lua程序使用的逻辑是每秒运行30次timer+1，但是实际情况下我们使用一个真实的时钟。为了实现暂停功能有几种方式可以选：
     1。就像用timer来控制seconds一样，读取时钟的内存地址，然后用另一个内存地址暂存，比较差值，如果大于1/30秒（暂定）就让timer+1并且归零差值。（这样会导致每秒的时间稍微长一点）
-    2.在最开始记录时钟的值A，然后之后一直使用差值来控制，暂停的时候记录当前差值，并在继续进行的时候让A重设定为当前时钟的值-差值。这个方法要优一些，但是要重构一部分代码
+    2.在最开始记录时钟的值A，然后之后一直使用差值来控制，暂停的时候记录当前差值，并在继续进行的时候让chazhi重设定为当前时钟的值-差值。这个方法要优一些，但是要重构一部分代码

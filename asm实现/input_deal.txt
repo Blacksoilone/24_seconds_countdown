@@ -3,64 +3,35 @@
     sw $ra, 0($sp)              # 保存返回地址
     sw $a0, 4($sp)              # 保存$a0寄存器
     
+    lw $t0, 0xfff4($zero)       #读取按键信息
+    
     # 检测左按钮(清零)
-    lw $t0, @按键左
-    bgtz $t0, do_zero
+    andi $t1, $t0, 8
+    bgtz $t1, do_zero
     
     # 检测上按钮(复位)  
-    lw $t0, @按键上
-    bgtz $t0, do_reset
+    andi $t1, $t0, 2
+    bgtz $t1, do_reset
     
     # 检测右按钮(暂停)
-    lw $t0, @按键右
-    bgtz $t0, do_pause
+    andi $t1, $t0, 16
+    bgtz $t1, do_pause
     
     # 检测下按钮(继续)
-    lw $t0, @按键下
-    bgtz $t0, do_continue
+    andi $t1, $t0, 4
+    bgtz $t1, do_continue
     
     j check_input_end           # 无按钮按下，直接结束
 
 do_zero:
-    jal zero_
-    j check_input_end
-
-do_reset:
-    jal reset_
-    j check_input_end
-
-do_pause:
-    jal pause_
-    j check_input_end
-
-do_continue:
-    jal continue_
-    # 继续执行到check_input_end
-
-check_input_end:
-    lw $ra, 0($sp)              # 恢复返回地址
-    lw $a0, 4($sp)              # 恢复$a0寄存器
-    addi $sp, $sp, 8
-    jr $ra
-
-zero_:
-    addi $sp, $sp, -4
-    sw $ra, 0($sp)              # 保存返回地址
-    
     addi $t0, $zero, 0
     sw $t0, @seconds            # seconds = 0
     
-    # 可选：同时停止计时
-    sw $t0, @countdown_control
-    
     lw $ra, 0($sp)
     addi $sp, $sp, 4
-    jr $ra
+    j check_input_end
 
-reset_:
-    addi $sp, $sp, -4
-    sw $ra, 0($sp)               # 保存返回地址
-    
+do_reset:
     addi $t0, $zero, 24
     sw $t0, @seconds             # seconds = 24
     
@@ -77,26 +48,28 @@ reset_:
     
     lw $ra, 0($sp)
     addi $sp, $sp, 4
-    jr $ra
+    j check_input_end
 
-pause_:
-    addi $sp, $sp, -4
-    sw $ra, 0($sp)              # 保存返回地址
-    
+do_pause:
+
     addi $t0, $zero, 0
     sw $t0, @countdown_control  # countdown_control = 0
     
     lw $ra, 0($sp)
     addi $sp, $sp, 4
-    jr $ra
+    j check_input_end
 
-continue_:
-    addi $sp, $sp, -4
-    sw $ra, 0($sp)              # 保存返回地址
-    
+do_continue:
+
     addi $t0, $zero, 1
     sw $t0, @countdown_control  # countdown_control = 1
-    
     lw $ra, 0($sp)
     addi $sp, $sp, 4
+    j check_input_end
+
+check_input_end:
+    lw $ra, 0($sp)              # 恢复返回地址
+    lw $a0, 4($sp)              # 恢复$a0寄存器
+    addi $sp, $sp, 8
     jr $ra
+

@@ -13,7 +13,7 @@ function _update()
  time_flow()
  bilnk_control()
  check_input()
- LED_control(seconds)
+ LED_control()
 
 end
 
@@ -90,8 +90,8 @@ function draw_LED()
   end
  end
 end
-function LED_control(sec_temp)
- 
+function LED_control()
+ sec_temp=seconds
  for n=0,4 do
   LED[5-n]=sec_temp%2+1
   sec_temp=sec_temp/2
