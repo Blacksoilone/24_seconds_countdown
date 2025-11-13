@@ -1,15 +1,14 @@
 lw 
 sw
 addi
-sub//并不需要
+
 beq
-bgtz
+slt
 j
 jal
 ANDi
-OR
+
 jr
 
-srl
 
 请对照指令集pdf文件查看具体使用方式

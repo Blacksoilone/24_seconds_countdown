@@ -110,19 +110,22 @@ do_continue:
 
 update_blink:                   #闪烁控制
     lw $t3, 0x1000($zero)
-    addi $t4, $t3, -5           #<=5秒的时候才能闪
-    bgtz $t4, end_blink
-    j do_blink
+    addi $t4, $zero, 5           #<=5秒的时候才能闪
+    slt $t5, $t4, $t3
+    bne $t5, $zero, do_blink
+    j end_blink
 
 do_blink:
     lw $t0, 0x1002($zero)
-    addi $t0, $t0, -25          #这里tick_counter是每秒100次，因此选取25到75的时间作为暗下去的时间
-    bgtz $t0, further_blink
+    addi $t2, $zero, 25         #这里tick_counter是每秒100次，因此选取25到75的时间作为暗下去的时间
+    slt $t3, $t0, $t2
+    beq $t3, $zero, further_blink
     j blink_light
 further_blink:                  #判断了大于25，因此进一步判断是不是小于75
     lw $t0, 0x1002($zero)
-    addi $t0, $t0, -75
-    bgtz $t0, blink_light
+    addi $t2, $zero, 75
+    slt $t3, $t0, $t2
+    bne $t3, $zero, blink_light
     j blink_dark
 blink_light:
     addi $t1, $zero, 1
