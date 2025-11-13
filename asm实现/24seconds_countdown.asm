@@ -57,7 +57,7 @@ skip_countdown:
     jr $ra
 
 check_input:
-    lw $t0, 0xfff4               #读取按键信息
+    lw $t0, 0xfff4($zero)               #读取按键信息
     j check_left
 
 check_left:
@@ -120,12 +120,12 @@ do_blink:
     lw $t0, @tick_counter
     addi $t0, $t0, -25          #这里tick_counter是每秒100次，因此选取25到75的时间作为暗下去的时间
     bgtz $t0, further_blink
-    j blink_dark
+    j blink_light
 further_blink:                  #判断了大于25，因此进一步判断是不是小于75
     lw $t0, @tick_counter
     addi $t0, $t0, -75
-    bgtz $t0, blink_dark
-    j blink_light
+    bgtz $t0, blink_light
+    j blink_dark
 blink_light:
     addi $t1, $zero, 1
     sw $t1, @blink_control
@@ -164,7 +164,8 @@ display_light:
     sw $t1, @display            #写进这个地址，我们认为可以自动变成7段码。实际上逻辑由verilog源码完成。我们硬件实现里要给数码管额外套一层
     j end_display
 display_dark:
-    sw $zero, @display
+    addi $t2, $zero, -1
+    sw $t2, @display
     j end_display
 end_display:
     jr $ra
