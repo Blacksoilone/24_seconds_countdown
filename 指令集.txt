@@ -1,14 +1,26 @@
 lw 
 sw
 addi
-
 beq
 slt
 j
 jal
 ANDi
-
 jr
 
 
 请对照指令集pdf文件查看具体使用方式
+#alu
+addi
+ANDi
+slt
+
+#mem
+lw
+sw
+
+#jump
+beq
+jal
+jr
+j
