@@ -1,12 +1,12 @@
-lw 
-sw
-addi
-beq
-slt
-j
-jal
-ANDi
-jr
+lw    #0x23  
+sw    #0x2b
+addi  #0x08
+beq   #0x04
+slt   #0x2a(后6位)
+j     #0x02
+jal   #0x03
+ANDi  #0x0c
+jr    #0x08(后6位)
 
 
 请对照指令集pdf文件查看具体使用方式
