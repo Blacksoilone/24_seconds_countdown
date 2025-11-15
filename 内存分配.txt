@@ -6,3 +6,4 @@
 @pause_flag         0x1001
 @tick_counter       0x1002
 @blink_control      0x1003
+@last_tick          0x1004

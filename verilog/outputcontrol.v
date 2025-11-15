@@ -1,4 +1,4 @@
-module controller(
+module outputcontrol(
     input           clk, reset,
     input [5:0]     op,
     input           zero,
@@ -90,7 +90,7 @@ module controller(
             FETCH: begin
                 memread  <= 1;
                 irwrite  <= 1;        // ← 1 位，表示加载完整 32 位指令
-                alusrcb  <= 2'b01;    // 利用 ALU 预计算 PC+4（B = sign_imm? 实际应为常量4，但按你设定）
+                alusrcb  <= 2'b01;    // 利用 ALU 预计算 PC+4
                 pcwrite  <= 1;
             end
 

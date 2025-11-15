@@ -1,10 +1,6 @@
-module mux2to1(
-    input control
-    input [31:0]src0,
-    input [31:0]src1,
-    
-
-    output [31:0]mux
-)
-    assign mux=control?src1:src0;
+module mux2to1 #(parameter WIDTH = 32) (
+    input   [WIDTH-1:0] d0, d1,
+    input   s,
+    output  [WIDTH-1:0] y);
+    assign y = s ? d1 : d0;
 endmodule
