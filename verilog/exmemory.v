@@ -4,12 +4,11 @@ module exmemory #(parameter WIDTH = 32)(
     input [WIDTH-1:0] adr, writedata,
     output reg [WIDTH-1:0] memdata
 );
-
-
-    reg [31:0] RAM[(1<<(WIDTH-2))-1 : 0];  // 2^(WIDTH-2) 个 32 位字
+    reg [31:0] RAM[ : 0];  // 2^(WIDTH-2) 个 32 位字
 
     initial begin
-        $readmemh("basic_test.dat", RAM);
+        RAM[0] = 32'h20010007;  // addi $1, $0, 7
+        RAM[1] = 32'hAC010005;  // sw $1, 5($0)
     end
 
     always @(posedge clk) begin

@@ -1,5 +1,3 @@
-// 带异步复位和使能的 D 触发器
-// 功能：reset=1 时强制 q=0；否则在 en=1 时锁存 d
 module flopenr #(
     parameter WIDTH = 32  // 数据位宽
 )(

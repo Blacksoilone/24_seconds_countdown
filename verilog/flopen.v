@@ -1,5 +1,3 @@
-// 带使能信号的 D 触发器（无复位）
-// 功能：仅在 en=1 时，在 clk 上升沿将 d 锁存到 q
 module flopen #(
     parameter WIDTH = 32  // 数据位宽
 )(

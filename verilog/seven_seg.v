@@ -1,11 +1,10 @@
-
 module seven_seg (
     input  [15:0] display_value,  // 输入数值
     output reg [7:0] seg_data,    // 段码输出 (CA-G, DP)
     output reg [3:0] an           // 位选信号
 );
 
-    reg [3:0] digit; // 只显示个位（简化）
+    reg [3:0] digit; // 只显示个位
 
     always @(*) begin
         digit = display_value % 10;

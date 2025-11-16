@@ -12,7 +12,7 @@
 
 update:
     wait_for_tick:
-    lw $t0, 0xff01($zero)                   # 读tick
+    lw $t0, 0xff01($zero)                   #读tick
     lw $t1, 0x1004($zero)                   #读上一次的标志
     beq $t0, $t1, wait_for_tick             #如果没变，认为还在同一个周期内（update不太可能要超过20ms才能执行完吧？）
 

@@ -1,4 +1,4 @@
-// regfile.v - 参数化版本
+// regfile.v
 module regfile #(
     parameter WIDTH = 32,
     parameter REGBITS = 5

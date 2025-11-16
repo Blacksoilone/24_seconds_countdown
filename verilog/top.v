@@ -9,7 +9,7 @@ module top #(parameter WIDTH = 32, REGBITS = 5)();
     wire [WIDTH-1:0] adr, writedata;
     wire [WIDTH-1:0] memdata;
 
-    //  实例化 CPU 
+    //实例化 CPU 
     mips #(WIDTH, REGBITS) dut (
         .clk(clk),
         .reset(reset),

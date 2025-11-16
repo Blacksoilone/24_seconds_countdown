@@ -12,22 +12,31 @@ module outputcontrol(
     reg [3:0] state, nextstate;
     reg pcwrite, pcwritecond;
 
-    parameter FETCH   = 4'b0001;
-    parameter DECODE  = 4'b0101;
-    parameter MEMADR  = 4'b0110;
-    parameter LBRD    = 4'b0111;
-    parameter LBWR    = 4'b1000;
-    parameter SBWR    = 4'b1001;
-    parameter RTYPEEX = 4'b1010;
-    parameter RTYPEWR = 4'b1011;
-    parameter BEQEX   = 4'b1100;
-    parameter JEX     = 4'b1101;
+    parameter FETCH     = 4'b0001;
+    parameter DECODE    = 4'b0010;
+    parameter MEMADR    = 4'b0011;
+    parameter LWRD      = 4'b0100;
+    parameter LWWR      = 4'b0101;
+    parameter SWWR      = 4'b0110;
+    parameter RTYPEEX   = 4'b0111;
+    parameter RTYPEWR   = 4'b1000;
+    parameter BEQEX     = 4'b1001;
+    parameter JEX       = 4'b1010;
+    parameter ADDIEX    = 4'b1011;
+    parameter ADDIWR    = 4'b1100;
+    parameter ANDIEX    = 4'b1101;
+    parameter ABDIWR    = 4'b1110;
+    parameter JALEX     = 4'b1111;
+    parameter JREX      = 4'b0000;
 
-    parameter LB      = 6'b100000;
-    parameter SB      = 6'b101000;
-    parameter RTYPE   = 6'b0;
+    parameter LW      = 6'b100011;
+    parameter SW      = 6'b101011;
+    parameter ADDI    = 6'b001000;
+    parameter ANDI    = 6'b001100;
+    parameter RTYPE   = 6'b000000;
     parameter BEQ     = 6'b000100;
     parameter J       = 6'b000010;
+    parameter JAL     = 6'b000011;
 
     // State register
     always @(posedge clk) begin
@@ -43,18 +52,21 @@ module outputcontrol(
             FETCH: nextstate <= DECODE;
             DECODE: begin
                 case (op)
-                    LB:      nextstate <= MEMADR;
-                    SB:      nextstate <= MEMADR;
+                    LW:      nextstate <= MEMADR;
+                    SW:      nextstate <= MEMADR;
                     RTYPE:   nextstate <= RTYPEEX;
                     BEQ:     nextstate <= BEQEX;
                     J:       nextstate <= JEX;
+                    ADDI:    nextstate <= ADDIEX;
+                    ANDI:
+                    JAL:
                     default: nextstate <= FETCH;
                 endcase
             end
             MEMADR: begin
                 case (op)
-                    LB:      nextstate <= LBRD;
-                    SB:      nextstate <= SBWR;
+                    LW:      nextstate <= LBRD;
+                    SW:      nextstate <= SBWR;
                     default: nextstate <= FETCH;
                 endcase
             end
@@ -65,6 +77,8 @@ module outputcontrol(
             RTYPEWR: nextstate <= FETCH;
             BEQEX:   nextstate <= FETCH;
             JEX:     nextstate <= FETCH;
+            ADDIEX:  nextstate <= ADDIWR
+            ADDIWR:  nextstate <=FETCH
             default: nextstate <= FETCH;
         endcase
     end
@@ -138,6 +152,15 @@ module outputcontrol(
             JEX: begin
                 pcwrite  <= 1;
                 pcsource <= 2'b10;
+            end
+            ADDIEX: begin 
+                alusrca<=1;
+                alusrcb<=01;
+                sluop <=00;
+            end
+            ADDIWR: begin
+                regwrite<=1;
+                regdst<=0;
             end
         endcase
     end
