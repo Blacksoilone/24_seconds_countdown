@@ -4,7 +4,7 @@ module exmemory #(parameter WIDTH = 32)(
     input [WIDTH-1:0] adr, writedata,
     output reg [WIDTH-1:0] memdata
 );
-    reg [31:0] RAM[ : 0];  // 2^(WIDTH-2) 个 32 位字
+    reg [31:0] RAM[1023 : 0];  // 2^(WIDTH-2) 个 32 位字
 
     initial begin
         RAM[0] = 32'h20010007;  // addi $1, $0, 7

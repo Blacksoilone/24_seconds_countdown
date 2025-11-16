@@ -13,7 +13,7 @@ module datapath #(parameter WIDTH = 32, REGBITS = 5)(
 
     parameter CONST_ZERO = {WIDTH{1'b0}};
     parameter CONST_ONE = { {WIDTH-1{1'b0}}, 1'b1 };//虽然可以不要，但还是留一下吧
-    parameter CONST_FOUR = {{WIDTH-2{1'b0}}, 2'b00};
+    parameter CONST_FOUR = 32'd4;
 
 
     wire [REGBITS-1:0] ra1, ra2, wa;

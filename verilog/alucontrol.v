@@ -13,7 +13,9 @@ module alucontrol (
             2'b01: begin
                 alucont <= 3'b110;  // SUB
             end
-
+            2'b11:begin
+                alucont <= 3'b000;
+            end
             default: begin  //R-type
                 case (funct)
                     6'b100000: alucont <= 3'b010;  // ADD
@@ -21,6 +23,7 @@ module alucontrol (
                     6'b100100: alucont <= 3'b000;  // AND
                     6'b100101: alucont <= 3'b001;  // OR
                     6'b101010: alucont <= 3'b111;  // SLT
+                    6'b001000: alucont <= 3'b101;  // JR
                     default:   alucont <= 3'b101;  //undefined不应出现！
                 endcase
             end

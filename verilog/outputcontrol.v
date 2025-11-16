@@ -25,9 +25,8 @@ module outputcontrol(
     parameter ADDIEX    = 4'b1011;
     parameter ADDIWR    = 4'b1100;
     parameter ANDIEX    = 4'b1101;
-    parameter ABDIWR    = 4'b1110;
+    parameter ANDIWR    = 4'b1110;
     parameter JALEX     = 4'b1111;
-    parameter JREX      = 4'b0000;
 
     parameter LW      = 6'b100011;
     parameter SW      = 6'b101011;
@@ -58,27 +57,30 @@ module outputcontrol(
                     BEQ:     nextstate <= BEQEX;
                     J:       nextstate <= JEX;
                     ADDI:    nextstate <= ADDIEX;
-                    ANDI:
-                    JAL:
+                    ANDI:   nextstate <= ANDIEX;
+                    JAL:    nextstate <=JALEX;
                     default: nextstate <= FETCH;
                 endcase
             end
             MEMADR: begin
                 case (op)
-                    LW:      nextstate <= LBRD;
-                    SW:      nextstate <= SBWR;
+                    LW:      nextstate <= LWRD;
+                    SW:      nextstate <= SWWR;
                     default: nextstate <= FETCH;
                 endcase
             end
-            LBRD:    nextstate <= LBWR;
-            LBWR:    nextstate <= FETCH;
-            SBWR:    nextstate <= FETCH;
+            LWRD:    nextstate <= LWWR;
+            LWWR:    nextstate <= FETCH;
+            SWWR:    nextstate <= FETCH;
             RTYPEEX: nextstate <= RTYPEWR;
             RTYPEWR: nextstate <= FETCH;
             BEQEX:   nextstate <= FETCH;
             JEX:     nextstate <= FETCH;
-            ADDIEX:  nextstate <= ADDIWR
-            ADDIWR:  nextstate <=FETCH
+            ADDIEX:  nextstate <= ADDIWR;
+            ADDIWR:  nextstate <=FETCH;
+            ANDIEX: nextstate <=ANDIWR;
+            ANDIWR: nextstate <=FETCH;
+            JALEX: nextstate<=FETCH;
             default: nextstate <= FETCH;
         endcase
     end
@@ -117,17 +119,17 @@ module outputcontrol(
                 alusrcb <= 2'b10;
             end
 
-            LBRD: begin
+            LWRD: begin
                 memread <= 1;
                 iord    <= 1;
             end
 
-            LBWR: begin
+            LWWR: begin
                 regwrite  <= 1;
                 memtoreg  <= 1;
             end
 
-            SBWR: begin
+            SWWR: begin
                 memwrite <= 1;
                 iord     <= 1;
             end
@@ -155,10 +157,28 @@ module outputcontrol(
             end
             ADDIEX: begin 
                 alusrca<=1;
-                alusrcb<=01;
-                sluop <=00;
+                alusrcb<=2'b10;
+                aluop <=2'b00;
             end
             ADDIWR: begin
+                regwrite<=1;
+                regdst<=0;
+            end
+            ANDIEX:begin
+                alusrca<=1;
+                alusrcb<=2'b10;
+                aluop<=2'b11;
+            end
+            ANDIWR:begin
+                regwrite<=1;
+                regdst<=0;
+            end
+            JALEX:begin
+                alusrca<=1;
+                alusrcb<=01;
+                aluop<=2'b00;
+                pcwrite<=1;
+                pcsource<=2'b10;
                 regwrite<=1;
                 regdst<=0;
             end
