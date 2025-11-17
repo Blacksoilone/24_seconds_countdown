@@ -8,7 +8,7 @@ module mips #(parameter WIDTH = 32, REGBITS = 5)(
     wire [31:0] instr;
     wire zero, alusrca, memtoreg, iord, pcen, regwrite, regdst;
     wire [1:0] aluop, pcsource, alusrcb;
-    wire irwrite;          // 改为 1 位！
+    wire irwrite;          // 改为 1 位
     wire [2:0] alucont;
 
     // 控制器：读取 opcode = instr[31:26]
@@ -16,6 +16,7 @@ module mips #(parameter WIDTH = 32, REGBITS = 5)(
         .clk(clk),
         .reset(reset),
         .op(instr[31:26]),
+        .funct(instr[5:0]),
         .zero(zero),
         .memread(memread),
         .memwrite(memwrite),

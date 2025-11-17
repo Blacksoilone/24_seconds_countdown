@@ -1,6 +1,7 @@
 module outputcontrol(
     input           clk, reset,
     input [5:0]     op,
+    input [5:0]     funct,
     input           zero,
     output reg      memread, memwrite, alusrca, memtoreg, iord,
     output          pcen,
@@ -27,6 +28,7 @@ module outputcontrol(
     parameter ANDIEX    = 4'b1101;
     parameter ANDIWR    = 4'b1110;
     parameter JALEX     = 4'b1111;
+    parameter JREX      = 4'b0000;
 
     parameter LW      = 6'b100011;
     parameter SW      = 6'b101011;
@@ -53,7 +55,12 @@ module outputcontrol(
                 case (op)
                     LW:      nextstate <= MEMADR;
                     SW:      nextstate <= MEMADR;
-                    RTYPE:   nextstate <= RTYPEEX;
+                    RTYPE:   begin 
+                        if(funct==6'b001000)
+                            nextstate <= JREX;
+                        else
+                            nextstate <=RTYPEEX;
+                    end
                     BEQ:     nextstate <= BEQEX;
                     J:       nextstate <= JEX;
                     ADDI:    nextstate <= ADDIEX;
@@ -81,6 +88,7 @@ module outputcontrol(
             ANDIEX: nextstate <=ANDIWR;
             ANDIWR: nextstate <=FETCH;
             JALEX: nextstate<=FETCH;
+            JREX: nextstate<=FETCH;
             default: nextstate <= FETCH;
         endcase
     end
@@ -181,6 +189,10 @@ module outputcontrol(
                 pcsource<=2'b10;
                 regwrite<=1;
                 regdst<=0;
+            end
+            JREX:begin
+                pcwrite<=1;
+                pcsource<=2'b11;
             end
         endcase
     end

@@ -53,7 +53,7 @@ module datapath #(parameter WIDTH = 32, REGBITS = 5)(
     mux2to1 #(WIDTH) adrmux(pc, aluout, iord, adr);
     mux2to1 #(WIDTH) src1mux(pc, a, alusrca, src1);
     mux4to1 #(WIDTH) src2mux(writedata, CONST_FOUR, immediate, constx4, alusrcb, src2);//可能有问题，应该送进去16位的立即数
-    mux4to1 #(WIDTH) pcmux(aluresult, aluout, constx4, CONST_ZERO, pcsource, nextpc);//可能出错，后十六位立即数
+    mux4to1 #(WIDTH) pcmux(aluresult, aluout, constx4, a, pcsource, nextpc);//可能出错，后十六位立即数
     mux2to1 #(WIDTH) wdmux(aluout, md, memtoreg, wd);
 
     // Register file
