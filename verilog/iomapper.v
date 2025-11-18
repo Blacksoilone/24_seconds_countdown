@@ -1,49 +1,85 @@
 module iomapper (
+    // 时钟和复位
     input        clk,
     input        reset,
-    input [31:0] adr,
-    input [31:0] writedata,
-    input        memwrite,
-    output [31:0] io_data
+    
+    // Memory 接口（CPU 连接）
+    input [31:0] adr,           // 地址总线
+    input [31:0] writedata,     // 写入数据
+    input        memwrite,      // 写使能
+    
+    // 按键输入（来自顶层）
+    input  [3:0] btn,           // 按键信号（低电平有效）
+    
+    // ========== Memory 读取输出（给 CPU）==========
+    output [31:0] io_data_read, // 用于 memory read 接口
+    
+    // ========== 直接 I/O 输出（给顶层引脚）==========
+    output [7:0]  seg_data,     // 七段数码管段码（CA-DP）
+    output [3:0]  an,           // 数码管位选（AN3-AN0）
+    output [4:0]  led           // LED 状态
 );
 
-    // I/O 状态寄存器
-    reg [7:0]  display_reg = 0;  // 0xFF00: 显示值
-    wire       tick_val;         // 0xFF01: 计时器 toggle
-
-    // 输出到数码管
-    wire [7:0] seg_out;
-    wire [3:0] an_out;
-
-    //  实例化外设
-    timer_toggle timer_inst (
+    // =================================================================
+    // I/O 寄存器声明
+    // =================================================================
+    
+    // 显示值寄存器（只写）
+    reg [7:0]  display_reg = 0;
+    
+    // 定时器信号（只读）
+    wire       tick_val;
+    
+    // =================================================================
+    // 外设实例化
+    // =================================================================
+    
+    // 10ms 定时器（每 10ms 翻转一次）
+    time_toggle_10ms timer_inst (
         .clk(clk),
         .reset(reset),
         .tick_toggle(tick_val)
     );
-
+    
+    // 七段数码管控制器
     seven_seg seg_inst (
-        .clk(clk),
-        .display_value({8'b00000000, display_reg}), // 16 位
-        .seg_data(seg_out),
-        .an(an_out)
+        .display_value({8'd0, display_reg}), // 16 位输入，高 8 位为 0
+        .seg_data(seg_data),                // 直接输出段码
+        .an(an)                             // 直接输出位选
     );
-
-    // 写操作 
+    
+    // =================================================================
+    // Memory 读取接口（组合逻辑）
+    // =================================================================
+    // 注意：这是给 CPU 读取状态用的，必须是组合逻辑
+    assign io_data_read = 
+        (adr[15:0] == 16'hFF01) ? {31'd0, tick_val} :    // 0xFF01: 定时器标志
+        (adr[15:0] == 16'hFFF4) ? {28'd0, btn} :        // 0xFFF4: 按键状态
+        32'h0;                                          // 其他地址返回 0
+    
+    // =================================================================
+    // Memory 写入接口（时序逻辑）
+    // =================================================================
+    // 注意：只在 memwrite=1 且时钟上升沿时更新
     always @(posedge clk) begin
         if (memwrite) begin
             case (adr[15:0])
-                16'hFF00: display_reg <= writedata[7:0]; 
-                
+                // 0xFF00: 显示值寄存器（只写）
+                16'hFF00: begin
+                    display_reg <= writedata[7:0];
+                end
+                // 可以扩展其他写寄存器
+                // 16'hFF02: led_reg <= writedata[4:0];
             endcase
         end
     end
-
-    assign io_data = 
-    (adr[15:0] == 16'hFF00) ? {24'd0, display_reg} :  // 检查低 16 位
-    (adr[15:0] == 16'hFF01) ? {31'd0, tick_val}    :
-    (adr[15:0] == 16'hFFF8) ? {24'd0, seg_out}     :
-    (adr[15:0] == 16'hFFF9) ? {28'd0, an_out}      :
-    32'h0;
-
+    
+    // =================================================================
+    // 直接 I/O 输出
+    // =================================================================
+    // LED 直接来自显示寄存器的低 5 位
+    assign led = display_reg[4:0];
+    
+    // seg_data 和 an 已在 seven_seg 模块中直接连接
+    
 endmodule
