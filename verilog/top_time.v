@@ -48,7 +48,6 @@ module top #(parameter WIDTH = 32, REGBITS = 5)();
     //  初始化 
     initial begin
         reset <= 1'b1;
-        #22;
         reset <= 1'b0;
     end
 

@@ -6,17 +6,28 @@ module exmemory #(parameter WIDTH = 32)(
 );
     reg [31:0] RAM[1023 : 0];  // 2^(WIDTH-2) 个 32 位字
 
+    
     initial begin
-        RAM[0] = 32'h20010010;  // addi $1, $0, 16
+ 
+    // 测试数字 0
+    RAM[0] = 32'h20010000;  // addi $1, $0, 0
+    RAM[1] = 32'hAC01FF00;  // sw $1, 0xFF00($0)
     
-
-        RAM[1] = 32'h00200008;  // jr $1 (funct=001000)
+    // 测试数字 1  
+    RAM[2] = 32'h20010001;  // addi $1, $0, 1
+    RAM[3] = 32'hAC01FF00;  // sw $1, 0xFF00($0)
     
-
-        RAM[4] = 32'h20020007;  // addi $2, $0, 7
-        RAM[5] = 32'hAC020005;  // sw $2, 5($0) → mem[5]=7
+    // 测试数字 2
+    RAM[4] = 32'h20010002;  // addi $1, $0, 2
+    RAM[5] = 32'hAC01FF00;  // sw $1, 0xFF00($0)
+    
+    // ... 可继续添加更多数字测试
+    
+    // 成功标志
+    RAM[6] = 32'h20020007;  // addi $2, $0, 7
+    RAM[7] = 32'hAC020005;  // sw $2, 5($0)
+    
     end
-
     always @(posedge clk) begin
         if (memwrite) begin
             // adr 是字节地址，但保证 4 字节对齐（adr[1:0]=0）

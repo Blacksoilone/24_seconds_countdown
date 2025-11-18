@@ -16,7 +16,7 @@ update:
     lw $t1, 0x1004($zero)                   #读上一次的标志
     beq $t0, $t1, wait_for_tick             #如果没变，认为还在同一个周期内（update不太可能要超过20ms才能执行完吧？）
 
-    sw $$t0, 0x1004($zero)                  #读完之后如果不同则更新
+    sw $t0, 0x1004($zero)                  #读完之后如果不同则更新
 
     jal update_countdown
     addi $zero, $zero, 0

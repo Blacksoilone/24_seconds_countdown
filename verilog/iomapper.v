@@ -23,7 +23,8 @@ module iomapper (
     );
 
     seven_seg seg_inst (
-        .display_value(display_reg), // 16 位
+        .clk(clk),
+        .display_value({8'b00000000, display_reg}), // 16 位
         .seg_data(seg_out),
         .an(an_out)
     );
@@ -31,18 +32,18 @@ module iomapper (
     // 写操作 
     always @(posedge clk) begin
         if (memwrite) begin
-            case (adr)
-                32'h0000FF00: display_reg <= writedata[15:0]; 
+            case (adr[15:0])
+                16'hFF00: display_reg <= writedata[7:0]; 
                 
             endcase
         end
     end
 
     assign io_data = 
-        (adr == 32'h0000FF00) ? {24'd0, display_reg} :
-        (adr == 32'h0000FF01) ? {31'd0, tick_val}    :
-        (adr == 32'h0000FFF8) ? {24'd0, seg_out}     :
-        (adr == 32'h0000FFF9) ? {28'd0, an_out}      :
-        32'h0;  // 其他地址由 RAM 处理
+    (adr[15:0] == 16'hFF00) ? {24'd0, display_reg} :  // 检查低 16 位
+    (adr[15:0] == 16'hFF01) ? {31'd0, tick_val}    :
+    (adr[15:0] == 16'hFFF8) ? {24'd0, seg_out}     :
+    (adr[15:0] == 16'hFFF9) ? {28'd0, an_out}      :
+    32'h0;
 
 endmodule
