@@ -1,0 +1,80 @@
+Vivado Simulator v2025.1.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: E:/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 --maxdelay -L xil_defaultlib -L simprims_ver -L secureip --snapshot top_timing_tb_time_impl -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_e 0 -pulse_int_e 0 xil_defaultlib.top_timing_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3129] assignment to input 'sys_reset' [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/impl/timing/xsim/top_timing_tb_time_impl.v:14618]
+WARNING: [VRFC 10-3129] assignment to input 'btn' [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/impl/timing/xsim/top_timing_tb_time_impl.v:14620]
+WARNING: [VRFC 10-3129] assignment to input 'btn' [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/impl/timing/xsim/top_timing_tb_time_impl.v:14622]
+WARNING: [VRFC 10-3129] assignment to input 'btn' [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/impl/timing/xsim/top_timing_tb_time_impl.v:14624]
+WARNING: [VRFC 10-3129] assignment to input 'btn' [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/impl/timing/xsim/top_timing_tb_time_impl.v:14626]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+INFO: [XSIM 43-3451] SDF backannotation process started with SDF file "top_timing_tb_time_impl.sdf", for root module "top_timing_tb/uut".
+INFO: [XSIM 43-3452] SDF backannotation was successful for SDF file "top_timing_tb_time_impl.sdf", for root module "top_timing_tb/uut".
+Time Resolution for simulation is 1ps
+Compiling module simprims_ver.PULLUP
+Compiling module simprims_ver.OBUF
+Compiling module simprims_ver.RB36_INTERNAL_VLOG(DOA_REG=1,RDA...
+Compiling module simprims_ver.RAMB36E1(DOA_REG=1,INITP_00=256'...
+Compiling module simprims_ver.RB36_INTERNAL_VLOG(DOA_REG=1,RDA...
+Compiling module simprims_ver.RAMB36E1(DOA_REG=1,INIT_00=256'b...
+Compiling module xil_defaultlib.blk_mem_gen_0
+Compiling module simprims_ver.IBUF
+Compiling module simprims_ver.BUFG
+Compiling module simprims_ver.MMCME2_ADV(CLKFBOUT_MULT_F=10.0,...
+Compiling module xil_defaultlib.clk_wiz_0_clk_wiz
+Compiling module xil_defaultlib.clk_wiz_0
+Compiling module simprims_ver.LUT6
+Compiling module simprims_ver.LUT5
+Compiling module simprims_ver.LUT4
+Compiling module simprims_ver.FDSE_default
+Compiling module simprims_ver.FDRE_default
+Compiling module simprims_ver.x_lut2_mux4
+Compiling module simprims_ver.LUT2
+Compiling module simprims_ver.x_lut3_mux8
+Compiling module simprims_ver.LUT3
+Compiling module xil_defaultlib.outputcontrol
+Compiling module simprims_ver.CARRY4
+Compiling module xil_defaultlib.alu
+Compiling module simprims_ver.MUXF7
+Compiling module xil_defaultlib.flop
+Compiling module xil_defaultlib.flopen
+Compiling module xil_defaultlib.flop_0
+Compiling module xil_defaultlib.flopenr
+Compiling module xil_defaultlib.flop_1
+Compiling module simprims_ver.RAMD32
+Compiling module simprims_ver.RAMS32
+Compiling module xil_defaultlib.RAM32M_UNIQ_BASE_
+Compiling module xil_defaultlib.RAM32M_HD49
+Compiling module xil_defaultlib.RAM32M_HD50
+Compiling module xil_defaultlib.RAM32M_HD51
+Compiling module xil_defaultlib.RAM32X1D_UNIQ_BASE_
+Compiling module xil_defaultlib.RAM32X1D_HD52
+Compiling module xil_defaultlib.RAM32M_HD53
+Compiling module xil_defaultlib.RAM32M_HD54
+Compiling module xil_defaultlib.RAM32M_HD55
+Compiling module xil_defaultlib.RAM32M_HD56
+Compiling module xil_defaultlib.RAM32M_HD57
+Compiling module xil_defaultlib.RAM32X1D_HD58
+Compiling module xil_defaultlib.RAM32X1D_HD59
+Compiling module xil_defaultlib.RAM32M_HD60
+Compiling module xil_defaultlib.regfile
+Compiling module xil_defaultlib.flop_2
+Compiling module xil_defaultlib.datapath
+Compiling module xil_defaultlib.mips
+Compiling module simprims_ver.FDPE_default
+Compiling module simprims_ver.FDCE_default
+Compiling module xil_defaultlib.button_debounce
+Compiling module simprims_ver.x_lut1_mux2
+Compiling module simprims_ver.LUT1
+Compiling module xil_defaultlib.seven_seg
+Compiling module xil_defaultlib.timer_toggle
+Compiling module xil_defaultlib.iomapper
+Compiling module xil_defaultlib.top
+Compiling module xil_defaultlib.top_timing_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_timing_tb_time_impl

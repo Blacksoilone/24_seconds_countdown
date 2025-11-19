@@ -1,0 +1,28 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../../../2025.1/Vivado/data/rsb/busdef" --include "../../../../24SecondsCountdown.ip_user_files/ipstatic" \
+"../../../../24SecondsCountdown.gen/sources_1/ip/blk_mem_gen_0_1/sim/blk_mem_gen_0.v" \
+"../../../../24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../../24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" \
+"../../../../../../处理器设计课设/verilog/alu.v" \
+"../../../../../../处理器设计课设/verilog/alucontrol.v" \
+"../../../../../../处理器设计课设/verilog/btn_debounced.v" \
+"../../../../../../处理器设计课设/verilog/datapath.v" \
+"../../../../../../处理器设计课设/verilog/flop.v" \
+"../../../../../../处理器设计课设/verilog/flopen.v" \
+"../../../../../../处理器设计课设/verilog/flopenr.v" \
+"../../../../../../处理器设计课设/verilog/iomapper.v" \
+"../../../../../../处理器设计课设/verilog/mips.v" \
+"../../../../../../处理器设计课设/verilog/mux2to1.v" \
+"../../../../../../处理器设计课设/verilog/mux4to1.v" \
+"../../../../../../处理器设计课设/verilog/outputcontrol.v" \
+"../../../../../../处理器设计课设/verilog/regfile.v" \
+"../../../../../../处理器设计课设/verilog/seven_seg.v" \
+"../../../../../../处理器设计课设/verilog/time_toggle.v" \
+"../../../../../../处理器设计课设/verilog/top.v" \
+"../../../../../../处理器设计课设/verilog/test_bench.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

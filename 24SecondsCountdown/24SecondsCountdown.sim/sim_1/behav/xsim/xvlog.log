@@ -1,0 +1,42 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/blk_mem_gen_0_1/sim/blk_mem_gen_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module blk_mem_gen_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0_clk_wiz
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/alucontrol.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alucontrol
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/btn_debounced.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module button_debounce
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/datapath.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module datapath
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/flop.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module flop
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/flopen.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module flopen
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/flopenr.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module flopenr
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/iomapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module iomapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/mips.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mips
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/mux2to1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mux2to1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/mux4to1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mux4to1
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/outputcontrol.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module outputcontrol
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/regfile.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module regfile
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/seven_seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seven_seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/time_toggle.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module timer_toggle
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/处理器设计课设/verilog/test_bench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_timing_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

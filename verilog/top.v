@@ -51,8 +51,9 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     wire [WIDTH-1:0] ram_data;
     blk_mem_gen_0 bram_inst (
         .clka(clk_100m),                    // 100MHz 时钟
-        .wea(memwrite ? 4'b1111 : 4'b0000), // 字节写使能
-        .addra(adr[13:2]),                  // 字地址（4KB = 1024 words）
+        .wea(memwrite), // 字节写使能
+        .ena(memread),
+        .addra(adr[12:2]),                  // 字地址
         .dina(writedata),                   // 写入数据
         .douta(ram_data)                    // 读出数据
     );

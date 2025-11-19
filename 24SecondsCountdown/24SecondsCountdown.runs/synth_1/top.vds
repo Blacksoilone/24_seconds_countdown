@@ -1,0 +1,457 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Nov 19 21:27:21 2025
+# Process ID         : 30452
+# Current directory  : E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1
+# Command line       : vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file           : E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1/top.vds
+# Journal file       : E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1\vivado.jou
+# Running On         : LAPTOP-NE3HVFFL
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i9-13900HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 32
+# Host memory        : 16858 MB
+# Swap memory        : 9663 MB
+# Total Virtual      : 26522 MB
+# Available Virtual  : 5070 MB
+#-----------------------------------------------------------
+source top.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.srcs/utils_1/imports/synth_1/top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.srcs/utils_1/imports/synth_1/top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top -part xc7a35ticpg236-1L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 14820
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1186.887 ; gain = 494.094
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11065] parameter 'CONST_ZERO' becomes localparam in 'datapath' with formal parameter declaration list [E:/111work/处理器设计课设/verilog/datapath.v:14]
+WARNING: [Synth 8-11065] parameter 'CONST_ONE' becomes localparam in 'datapath' with formal parameter declaration list [E:/111work/处理器设计课设/verilog/datapath.v:15]
+WARNING: [Synth 8-11065] parameter 'CONST_FOUR' becomes localparam in 'datapath' with formal parameter declaration list [E:/111work/处理器设计课设/verilog/datapath.v:16]
+INFO: [Synth 8-6157] synthesizing module 'top' [E:/111work/处理器设计课设/verilog/top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1/.Xil/Vivado-30452-LAPTOP-NE3HVFFL/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1/.Xil/Vivado-30452-LAPTOP-NE3HVFFL/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'mips' [E:/111work/处理器设计课设/verilog/mips.v:1]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter REGBITS bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'outputcontrol' [E:/111work/处理器设计课设/verilog/outputcontrol.v:1]
+INFO: [Synth 8-226] default block is never used [E:/111work/处理器设计课设/verilog/outputcontrol.v:52]
+INFO: [Synth 8-6155] done synthesizing module 'outputcontrol' (0#1) [E:/111work/处理器设计课设/verilog/outputcontrol.v:1]
+INFO: [Synth 8-6157] synthesizing module 'alucontrol' [E:/111work/处理器设计课设/verilog/alucontrol.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'alucontrol' (0#1) [E:/111work/处理器设计课设/verilog/alucontrol.v:1]
+INFO: [Synth 8-6157] synthesizing module 'datapath' [E:/111work/处理器设计课设/verilog/datapath.v:1]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter REGBITS bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'mux2to1' [E:/111work/处理器设计课设/verilog/mux2to1.v:1]
+	Parameter WIDTH bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux2to1' (0#1) [E:/111work/处理器设计课设/verilog/mux2to1.v:1]
+INFO: [Synth 8-6157] synthesizing module 'flopen' [E:/111work/处理器设计课设/verilog/flopen.v:1]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopen' (0#1) [E:/111work/处理器设计课设/verilog/flopen.v:1]
+INFO: [Synth 8-6157] synthesizing module 'flopenr' [E:/111work/处理器设计课设/verilog/flopenr.v:1]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopenr' (0#1) [E:/111work/处理器设计课设/verilog/flopenr.v:1]
+INFO: [Synth 8-6157] synthesizing module 'flop' [E:/111work/处理器设计课设/verilog/flop.v:1]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flop' (0#1) [E:/111work/处理器设计课设/verilog/flop.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mux2to1__parameterized0' [E:/111work/处理器设计课设/verilog/mux2to1.v:1]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux2to1__parameterized0' (0#1) [E:/111work/处理器设计课设/verilog/mux2to1.v:1]
+INFO: [Synth 8-6157] synthesizing module 'mux4to1' [E:/111work/处理器设计课设/verilog/mux4to1.v:1]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux4to1' (0#1) [E:/111work/处理器设计课设/verilog/mux4to1.v:1]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [E:/111work/处理器设计课设/verilog/regfile.v:2]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter REGBITS bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [E:/111work/处理器设计课设/verilog/regfile.v:2]
+INFO: [Synth 8-6157] synthesizing module 'alu' [E:/111work/处理器设计课设/verilog/alu.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [E:/111work/处理器设计课设/verilog/alu.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'datapath' (0#1) [E:/111work/处理器设计课设/verilog/datapath.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'mips' (0#1) [E:/111work/处理器设计课设/verilog/mips.v:1]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1/.Xil/Vivado-30452-LAPTOP-NE3HVFFL/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1/.Xil/Vivado-30452-LAPTOP-NE3HVFFL/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'iomapper' [E:/111work/处理器设计课设/verilog/iomapper.v:1]
+INFO: [Synth 8-6157] synthesizing module 'timer_toggle' [E:/111work/处理器设计课设/verilog/time_toggle.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'timer_toggle' (0#1) [E:/111work/处理器设计课设/verilog/time_toggle.v:1]
+INFO: [Synth 8-6157] synthesizing module 'button_debounce' [E:/111work/处理器设计课设/verilog/btn_debounced.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'button_debounce' (0#1) [E:/111work/处理器设计课设/verilog/btn_debounced.v:1]
+INFO: [Synth 8-6157] synthesizing module 'seven_seg' [E:/111work/处理器设计课设/verilog/seven_seg.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'seven_seg' (0#1) [E:/111work/处理器设计课设/verilog/seven_seg.v:1]
+INFO: [Synth 8-155] case statement is not full and has no default [E:/111work/处理器设计课设/verilog/iomapper.v:74]
+INFO: [Synth 8-6155] done synthesizing module 'iomapper' (0#1) [E:/111work/处理器设计课设/verilog/iomapper.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [E:/111work/处理器设计课设/verilog/top.v:1]
+WARNING: [Synth 8-7129] Port adr[31] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[30] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[29] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[28] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[27] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[26] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[25] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[24] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[23] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[22] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[21] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[20] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[19] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[18] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[17] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[16] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[31] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[30] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[29] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[28] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[27] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[26] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[25] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[24] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[23] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[22] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[21] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[20] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[19] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[18] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[17] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[16] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[15] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[14] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[13] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[12] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[11] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[10] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[9] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[8] in module iomapper is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1299.281 ; gain = 606.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1299.281 ; gain = 606.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1299.281 ; gain = 606.488
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1299.281 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [e:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_inst'
+Finished Parsing XDC File [e:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_inst'
+Parsing XDC File [e:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'bram_inst'
+Finished Parsing XDC File [e:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'bram_inst'
+Parsing XDC File [E:/111work/vivado/24SecondsCountdown/constrain.XDC]
+Finished Parsing XDC File [E:/111work/vivado/24SecondsCountdown/constrain.XDC]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [E:/111work/vivado/24SecondsCountdown/constrain.XDC]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1365.965 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1365.965 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'bram_inst' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1365.965 ; gain = 673.172
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35ticpg236-1L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1365.965 ; gain = 673.172
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1365.965 ; gain = 673.172
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'outputcontrol'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   FETCH |                 0000000000000001 |                             0001
+                  DECODE |                 0000000000000010 |                             0010
+                  MEMADR |                 0000000000000100 |                             0011
+                    LWRD |                 0000000000001000 |                             0100
+                    LWWR |                 0000000000010000 |                             0101
+                    SWWR |                 0000000000100000 |                             0110
+                    JREX |                 0000000001000000 |                             0000
+                 RTYPEEX |                 0000000010000000 |                             0111
+                 RTYPEWR |                 0000000100000000 |                             1000
+                   BEQEX |                 0000001000000000 |                             1001
+                     JEX |                 0000010000000000 |                             1010
+                  ADDIEX |                 0000100000000000 |                             1011
+                  ADDIWR |                 0001000000000000 |                             1100
+                  ANDIEX |                 0010000000000000 |                             1101
+                  ANDIWR |                 0100000000000000 |                             1110
+                   JALEX |                 1000000000000000 |                             1111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'outputcontrol'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1365.965 ; gain = 673.172
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input   20 Bit       Adders := 1     
+	   2 Input   17 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 6     
+	               20 Bit    Registers := 1     
+	               17 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---RAMs : 
+	             1024 Bit	(32 X 32 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 6     
+	   4 Input   32 Bit        Muxes := 2     
+	  16 Input   16 Bit        Muxes := 1     
+	   9 Input   16 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	   3 Input   16 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	  16 Input    2 Bit        Muxes := 3     
+	  16 Input    1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port adr[31] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[30] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[29] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[28] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[27] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[26] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[25] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[24] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[23] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[22] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[21] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[20] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[19] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[18] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[17] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port adr[16] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[31] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[30] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[29] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[28] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[27] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[26] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[25] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[24] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[23] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[22] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[21] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[20] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[19] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[18] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[17] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[16] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[15] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[14] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[13] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[12] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[11] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[10] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[9] in module iomapper is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writedata[8] in module iomapper is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1395.508 ; gain = 702.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+-------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object        | Inference | Size (Depth x Width) | Primitives   | 
++------------+-------------------+-----------+----------------------+--------------+
+|top         | dut/dp/rf/RAM_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+-------------------+-----------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-565] redefining clock 'sys_clk'
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1500.613 ; gain = 807.820
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1568.641 ; gain = 875.848
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++------------+-------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object        | Inference | Size (Depth x Width) | Primitives   | 
++------------+-------------------+-----------+----------------------+--------------+
+|top         | dut/dp/rf/RAM_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+-------------------+-----------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1578.684 ; gain = 885.891
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
+|2     |blk_mem_gen_0 |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+------------+------+
+|      |Cell        |Count |
++------+------------+------+
+|1     |blk_mem_gen |     1|
+|2     |clk_wiz     |     1|
+|3     |CARRY4      |    35|
+|4     |LUT1        |     4|
+|5     |LUT2        |    26|
+|6     |LUT3        |    80|
+|7     |LUT4        |    38|
+|8     |LUT5        |    72|
+|9     |LUT6        |   290|
+|10    |MUXF7       |     7|
+|11    |RAM32M      |    10|
+|12    |RAM32X1D    |     4|
+|13    |FDCE        |    42|
+|14    |FDPE        |     4|
+|15    |FDRE        |   234|
+|16    |FDSE        |     1|
+|17    |IBUF        |     5|
+|18    |OBUF        |    17|
++------+------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 42 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1757.414 ; gain = 997.938
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1757.414 ; gain = 1064.621
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1766.566 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 56 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1770.227 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 14 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
+
+Synth Design complete | Checksum: df78d01f
+INFO: [Common 17-83] Releasing license: Synthesis
+63 Infos, 86 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1770.227 ; gain = 1264.617
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1770.227 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/synth_1/top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 19 21:27:51 2025...

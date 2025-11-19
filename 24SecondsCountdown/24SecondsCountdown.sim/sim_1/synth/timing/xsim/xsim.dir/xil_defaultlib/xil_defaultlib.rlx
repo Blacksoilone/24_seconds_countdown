@@ -1,0 +1,5 @@
+0.7
+2020.2
+May 22 2025
+00:13:55
+E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/synth/timing/xsim/top_time_synth.v,1763477676,verilog,,,,RAM32M_HD85;RAM32M_HD86;RAM32M_HD87;RAM32M_HD89;RAM32M_HD90;RAM32M_HD91;RAM32M_HD92;RAM32M_HD93;RAM32M_HD96;RAM32M_UNIQ_BASE_;RAM32X1D_HD88;RAM32X1D_HD94;RAM32X1D_HD95;RAM32X1D_UNIQ_BASE_;alu;blk_mem_gen_0;blk_mem_gen_0_blk_mem_gen_generic_cstr;blk_mem_gen_0_blk_mem_gen_prim_width;blk_mem_gen_0_blk_mem_gen_prim_wrapper;blk_mem_gen_0_blk_mem_gen_top;blk_mem_gen_0_blk_mem_gen_v8_4_11;blk_mem_gen_0_blk_mem_gen_v8_4_11_synth;button_debounce;clk_wiz_0;clk_wiz_0_clk_wiz;datapath;flop;flop_0;flop_1;flop_2;flopen;flopenr;glbl;iomapper;mips;outputcontrol;regfile;timer_toggle;top,,,../../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,

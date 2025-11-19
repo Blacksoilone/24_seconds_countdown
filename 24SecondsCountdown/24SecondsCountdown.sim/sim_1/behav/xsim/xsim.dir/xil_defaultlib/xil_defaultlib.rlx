@@ -1,0 +1,25 @@
+0.7
+2020.2
+May 22 2025
+00:13:55
+E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/blk_mem_gen_0_1/sim/blk_mem_gen_0.v,1763556015,verilog,,E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v,,blk_mem_gen_0,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v,1763456220,verilog,,E:/111work/处理器设计课设/verilog/alu.v,,clk_wiz_0,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v,1763456220,verilog,,E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v,,clk_wiz_0_clk_wiz,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.sim/sim_1/behav/xsim/glbl.v,1741209010,verilog,,,,glbl,,,,,,,,
+E:/111work/处理器设计课设/verilog/alu.v,1763283029,verilog,,E:/111work/处理器设计课设/verilog/alucontrol.v,,alu,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/alucontrol.v,1763280389,verilog,,E:/111work/处理器设计课设/verilog/btn_debounced.v,,alucontrol,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/btn_debounced.v,1763470443,verilog,,E:/111work/处理器设计课设/verilog/datapath.v,,button_debounce,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/datapath.v,1763462987,verilog,,E:/111work/处理器设计课设/verilog/flop.v,,datapath,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/flop.v,1763194910,verilog,,E:/111work/处理器设计课设/verilog/flopen.v,,flop,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/flopen.v,1763209872,verilog,,E:/111work/处理器设计课设/verilog/flopenr.v,,flopen,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/flopenr.v,1763209876,verilog,,E:/111work/处理器设计课设/verilog/iomapper.v,,flopenr,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/iomapper.v,1763555000,verilog,,E:/111work/处理器设计课设/verilog/mips.v,,iomapper,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/mips.v,1763302089,verilog,,E:/111work/处理器设计课设/verilog/mux2to1.v,,mips,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/mux2to1.v,1763194984,verilog,,E:/111work/处理器设计课设/verilog/mux4to1.v,,mux2to1,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/mux4to1.v,1763195077,verilog,,E:/111work/处理器设计课设/verilog/outputcontrol.v,,mux4to1,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/outputcontrol.v,1763301701,verilog,,E:/111work/处理器设计课设/verilog/regfile.v,,outputcontrol,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/regfile.v,1763209883,verilog,,E:/111work/处理器设计课设/verilog/seven_seg.v,,regfile,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/seven_seg.v,1763448120,verilog,,E:/111work/处理器设计课设/verilog/time_toggle.v,,seven_seg,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/test_bench.v,1763512292,verilog,,,,top_timing_tb,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/time_toggle.v,1763189570,verilog,,E:/111work/处理器设计课设/verilog/top.v,,timer_toggle,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,
+E:/111work/处理器设计课设/verilog/top.v,1763556070,verilog,,E:/111work/处理器设计课设/verilog/test_bench.v,,top,,,../../../../../../../2025.1/Vivado/data/rsb/busdef;../../../../24SecondsCountdown.ip_user_files/ipstatic,,,,,

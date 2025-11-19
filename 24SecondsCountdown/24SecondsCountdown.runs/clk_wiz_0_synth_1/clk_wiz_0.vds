@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Nov 19 09:03:05 2025
+# Process ID         : 3212
+# Current directory  : E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/clk_wiz_0_synth_1
+# Command line       : vivado.exe -log clk_wiz_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clk_wiz_0.tcl
+# Log file           : E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/clk_wiz_0_synth_1/clk_wiz_0.vds
+# Journal file       : E:/111work/vivado/24SecondsCountdown/24SecondsCountdown.runs/clk_wiz_0_synth_1\vivado.jou
+# Running On         : LAPTOP-NE3HVFFL
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i9-13900HX
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 32
+# Host memory        : 16858 MB
+# Swap memory        : 9663 MB
+# Total Virtual      : 26522 MB
+# Available Virtual  : 11116 MB
+#-----------------------------------------------------------
+source clk_wiz_0.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP clk_wiz_0, cache-ID = 473c73a95c3dcb70.
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 19 09:03:13 2025...

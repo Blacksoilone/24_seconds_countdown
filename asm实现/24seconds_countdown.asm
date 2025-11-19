@@ -1,22 +1,22 @@
     addi $t0, $zero, 24
     sw $t0, 0x1000($zero)                   #设置倒计时初值
 
-    sw $zero, 0x1001($zero)                 #用pause_flag控制暂停，初始化为0
+    sw $zero, 0x1004($zero)                 #用pause_flag控制暂停，初始化为0
 
-    sw $zero, 0x1002($zero)
+    sw $zero, 0x1008($zero)
 
     addi $t1, $zero, 1             
-    sw $t1, 0x1003($zero)                   #此处为blink_control的初始化，应该初始化为1，否则在5秒前都会将display设置为-1，熄灭
-    sw $zero, 0x1004($zero)                 #c初始化翻转标志位
+    sw $t1, 0x100c($zero)                   #此处为blink_control的初始化，应该初始化为1，否则在5秒前都会将display设置为-1，熄灭
+    sw $zero, 0x1010($zero)                 #c初始化翻转标志位
     j update
 
 update:
     wait_for_tick:
-    lw $t0, 0xff01($zero)                   #读tick
-    lw $t1, 0x1004($zero)                   #读上一次的标志
+    lw $t0, 0xff04($zero)                   #读tick
+    lw $t1, 0x1010($zero)                   #读上一次的标志
     beq $t0, $t1, wait_for_tick             #如果没变，认为还在同一个周期内（update不太可能要超过20ms才能执行完吧？）
 
-    sw $t0, 0x1004($zero)                  #读完之后如果不同则更新
+    sw $t0, 0x1010($zero)                  #读完之后如果不同则更新
 
     jal update_countdown
     addi $zero, $zero, 0
@@ -31,21 +31,21 @@ update:
     j update
 
 update_countdown:
-    lw $t0, 0x1001($zero)
+    lw $t0, 0x1004($zero)
     beq $t0, $zero, do_count
     j skip_countdown
 
 do_count:
-    lw $t1, 0x1002($zero)
+    lw $t1, 0x1008($zero)
     addi $t1, $t1, 1
-    sw $t1, 0x1002($zero)                   #读取tickcounter并加一，实现计时
+    sw $t1, 0x1008($zero)                   #读取tickcounter并加一，实现计时
 
     addi $t2, $t1, -100
     beq $t2, $zero, do_second
     j skip_countdown
 
 do_second:
-    sw $zero, 0x1002($zero)
+    sw $zero, 0x1008($zero)
     lw $t3, 0x1000($zero)
     beq $t3, $zero, skip_countdown
 
@@ -99,14 +99,14 @@ do_zero:
     jr $ra
 do_pause:
     addi $t0, $zero, 1
-    sw $t0, 0x1001($zero)
+    sw $t0, 0x1004($zero)
     jr $ra
 do_reset:
     addi $t0, $zero, 24
     sw $t0, 0x1000($zero)
     jr $ra
 do_continue:
-    sw $zero, 0x1001($zero)
+    sw $zero, 0x1004($zero)
     jr $ra
 
 update_blink:                           #闪烁控制
@@ -117,23 +117,23 @@ update_blink:                           #闪烁控制
     j end_blink
 
 do_blink:
-    lw $t0, 0x1002($zero)
+    lw $t0, 0x1008($zero)
     addi $t2, $zero, 25                 #这里tick_counter是每秒100次，因此选取25到75的时间作为暗下去的时间
     slt $t3, $t0, $t2
     beq $t3, $zero, further_blink
     j blink_light
 further_blink:                          #判断了大于25，因此进一步判断是不是小于75
-    lw $t0, 0x1002($zero)
+    lw $t0, 0x1008($zero)
     addi $t2, $zero, 75
     slt $t3, $t0, $t2
     bne $t3, $zero, blink_light
     j blink_dark
 blink_light:
     addi $t1, $zero, 1
-    sw $t1, 0x1003($zero)
+    sw $t1, 0x100c($zero)
     j end_blink
 blink_dark:
-    sw $zero, 0x1003($zero)
+    sw $zero, 0x100c($zero)
     j end_blink
 end_blink:
     jr $ra
@@ -145,7 +145,7 @@ update_led:                         #控制led灯的亮暗
     j end_led
 
 do_led_blink:                       #除了blink_control以外还要考虑seconds是否为0
-    lw $t1, 0x1003($zero)
+    lw $t1, 0x100c($zero)
     beq $t1, $zero, led_dark
     addi $t2, $zero, 31             #31是11111，用来让led灯全亮
     sw $t2, 0xfff0
@@ -157,7 +157,7 @@ end_led:
     jr $ra
     
 update_display:                     #数码管显示
-    lw $t0, 0x1003($zero)
+    lw $t0, 0x100c($zero)
     beq $t0, $zero, display_dark
     j display_light
 display_light:

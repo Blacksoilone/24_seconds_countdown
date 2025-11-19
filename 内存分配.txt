@@ -1,9 +1,9 @@
 @display            0xff00
-@tick_event         0xff01
+@tick_event         0xff04
 #以上是硬件
 
 @seconds            0x1000
-@pause_flag         0x1001
-@tick_counter       0x1002
-@blink_control      0x1003
-@last_tick          0x1004
+@pause_flag         0x1004
+@tick_counter       0x1008
+@blink_control      0x100c
+@last_tick          0x1010
