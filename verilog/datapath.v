@@ -79,6 +79,6 @@ module datapath #(parameter WIDTH = 32, REGBITS = 5)(
     .ALUResult(aluresult),
     .Zero(zero)
 );
-    zerodetect #(WIDTH) zd(aluresult, zero);
+
 
 endmodule

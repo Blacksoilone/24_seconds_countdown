@@ -19,7 +19,7 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     clk_wiz_0 clk_wiz_inst (
         .clk_in1(sys_clk),    // 板载晶振
         .clk_out1(clk_100m),  // 100MHz 输出
-        .resetn(~sys_reset),  // 复位取反（假设 sys_reset 高有效）
+        .reset(~sys_reset)  // 复位取反（假设 sys_reset 高有效）
     );
     
     // 复位直接使用（假设 sys_reset 高有效）
@@ -51,7 +51,6 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     wire [WIDTH-1:0] ram_data;
     blk_mem_gen_0 bram_inst (
         .clka(clk_100m),                    // 100MHz 时钟
-        .ena(1'b1),                         // 始终使能
         .wea(memwrite ? 4'b1111 : 4'b0000), // 字节写使能
         .addra(adr[13:2]),                  // 字地址（4KB = 1024 words）
         .dina(writedata),                   // 写入数据

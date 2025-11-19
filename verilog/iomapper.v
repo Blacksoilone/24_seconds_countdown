@@ -35,12 +35,19 @@ module iomapper (
     // =================================================================
     
     // 10ms 定时器（每 10ms 翻转一次）
-    time_toggle_10ms timer_inst (
+    timer_toggle timer_inst (
         .clk(clk),
         .reset(reset),
         .tick_toggle(tick_val)
     );
-    
+    //按键消抖
+    wire [3:0] btn_debounced;
+    button_debounce debounce_inst (
+        .clk(clk),
+        .reset(reset),
+        .btn_raw(btn),
+        .btn_debounced(btn_debounced)
+    );
     // 七段数码管控制器
     seven_seg seg_inst (
         .display_value({8'd0, display_reg}), // 16 位输入，高 8 位为 0
@@ -54,7 +61,7 @@ module iomapper (
     // 注意：这是给 CPU 读取状态用的，必须是组合逻辑
     assign io_data_read = 
         (adr[15:0] == 16'hFF01) ? {31'd0, tick_val} :    // 0xFF01: 定时器标志
-        (adr[15:0] == 16'hFFF4) ? {28'd0, btn} :        // 0xFFF4: 按键状态
+        (adr[15:0] == 16'hFFF4) ? {28'd0, btn_debounced} :        // 0xFFF4: 按键状态
         32'h0;                                          // 其他地址返回 0
     
     // =================================================================
