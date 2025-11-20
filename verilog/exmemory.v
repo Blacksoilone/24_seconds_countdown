@@ -1,33 +1,27 @@
+//
 module exmemory #(parameter WIDTH = 32)(
     input clk,
     input memwrite,
     input [WIDTH-1:0] adr, writedata,
     output reg [WIDTH-1:0] memdata
 );
-    reg [31:0] RAM[1023 : 0];  // 2^(WIDTH-2) 个 32 位字
-
+     // 使用分布式 RAM 属性（FPGA 兼容）
+    (* ram_style = "block" *)
+    reg [31:0] RAM[0:1023];
     
+    // ========== 完整程序初始化 ==========
+    // 程序存储在地址 0x0000 - 0x003F
+    // 数据存储在地址 0x1000 - 0x1010
     initial begin
- 
-    // 测试数字 0
-    RAM[0] = 32'h20010000;  // addi $1, $0, 0
-    RAM[1] = 32'hAC01FF00;  // sw $1, 0xFF00($0)
-    
-    // 测试数字 1  
-    RAM[2] = 32'h20010001;  // addi $1, $0, 1
-    RAM[3] = 32'hAC01FF00;  // sw $1, 0xFF00($0)
-    
-    // 测试数字 2
-    RAM[4] = 32'h20010002;  // addi $1, $0, 2
-    RAM[5] = 32'hAC01FF00;  // sw $1, 0xFF00($0)
-    
-    // ... 可继续添加更多数字测试
-    
-    // 成功标志
-    RAM[6] = 32'h20020007;  // addi $2, $0, 7
-    RAM[7] = 32'hAC020005;  // sw $2, 5($0)
-    
+        // ========== 初始化 (地址 0x00-0x1C) ==========
+        $readmemh("program.mem", RAM);
+        
+        $display("RAM1 = %h", RAM[1]);
+            
+        
+        
     end
+
     always @(posedge clk) begin
         if (memwrite) begin
             // adr 是字节地址，但保证 4 字节对齐（adr[1:0]=0）

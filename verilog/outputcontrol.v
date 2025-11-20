@@ -73,7 +73,6 @@ module outputcontrol(
                 case (op)
                     LW:      nextstate <= LWRD;
                     SW:      nextstate <= SWWR;
-                    default: nextstate <= FETCH;
                 endcase
             end
             LWRD:    nextstate <= LWWR;

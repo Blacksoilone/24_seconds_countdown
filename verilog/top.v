@@ -19,7 +19,7 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     clk_wiz_0 clk_wiz_inst (
         .clk_in1(sys_clk),    // 板载晶振
         .clk_out1(clk_100m),  // 100MHz 输出
-        .reset(~sys_reset)  // 复位取反（假设 sys_reset 高有效）
+        .reset(sys_reset)  // 复位
     );
     
     // 复位直接使用（假设 sys_reset 高有效）
@@ -49,13 +49,12 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     // 实例化 RAM（0x00000000 ~ 0x0000FEFF）
     // =================================================================
     wire [WIDTH-1:0] ram_data;
-    blk_mem_gen_0 bram_inst (
-        .clka(clk_100m),                    // 100MHz 时钟
-        .wea(memwrite), // 字节写使能
-        .ena(memread),
-        .addra(adr[12:2]),                  // 字地址
-        .dina(writedata),                   // 写入数据
-        .douta(ram_data)                    // 读出数据
+    exmemory bram_inst (
+        .clk(clk_100m),                    // 100MHz 时钟
+        .memwrite(memwrite),                     // 字节写使能
+        .adr(adr),                  // 字地址
+        .writedata(writedata),                   // 写入数据
+        .memdata(ram_data)                    // 读出数据
     );
 
     // =================================================================
@@ -79,7 +78,7 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     // Memory 选择逻辑 
     // =================================================================
     // I/O 地址范围: 0xFF00 ~ 0xFFFF
-    assign memdata = (adr >= 32'h0000FF00) ? io_data_read : ram_data;
+    assign memdata = (adr[15:0] >= 16'hFF00) ? io_data_read : ram_data;
 
     // =================================================================
     // 仿真专用逻辑（仅用于仿真，FPGA 中不需要）
