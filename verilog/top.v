@@ -36,7 +36,7 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     // 实例化 CPU 
     // =================================================================
     mips #(WIDTH, REGBITS) dut (
-        .clk(clk_100m),       // 使用 100MHz 时钟
+        .clk(sys_clk),       // 使用 100MHz 时钟
         .reset(reset),
         .memdata(memdata),
         .memread(memread),
@@ -49,12 +49,13 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     // 实例化 RAM（0x00000000 ~ 0x0000FEFF）
     // =================================================================
     wire [WIDTH-1:0] ram_data;
-    exmemory bram_inst (
-        .clk(clk_100m),                    // 100MHz 时钟
-        .memwrite(memwrite),                     // 字节写使能
-        .adr(adr),                  // 字地址
-        .writedata(writedata),                   // 写入数据
-        .memdata(ram_data)                    // 读出数据
+    blk_mem_gen_0 bram_inst (
+        .clka(sys_clk),                    // 100MHz 时钟
+        .wea(memwrite),
+        .ena(memread),                   // 字节写使能
+        .addra(adr[12:2]),                  // 字地址
+        .dina(writedata),                   // 写入数据
+        .douta(ram_data)                    // 读出数据
     );
 
     // =================================================================
@@ -62,7 +63,7 @@ module top #(parameter WIDTH = 32, REGBITS = 5)(
     // =================================================================
     wire [WIDTH-1:0] io_data_read;
     iomapper io_inst (
-        .clk(clk_100m),         // 100MHz 时钟
+        .clk(sys_clk),         // 100MHz 时钟
         .reset(reset),
         .adr(adr),
         .writedata(writedata),
